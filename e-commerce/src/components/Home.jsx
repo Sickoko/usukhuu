@@ -1,34 +1,28 @@
-import MainMenu from "./MainMenu";
 import Banner from "./Banner";
 import AliceCarousel from "react-alice-carousel";
 import carouselData from "../data/carousel";
-import productsData from "../data/products";
-import bannerData from "../data/banner-items";
-import popProductsData from "../data/popular";
-
+// import productsData from "../data/products";
 import Category from "./Category";
 import Products from "./Products";
 import React from "react";
 import Poster from "./Poster";
 import ProductsPart2 from "./ProductsPart2";
 import { useState } from "react";
-import SearchBar from "./SearchBar";
-import CallService from "./CallService";
-import fetchPopularCategory from "../services/fetchPopularCategory";
-import { Link, Routes, Route } from "react-router-dom";
-import Signup from "./Signup";
-import NotFound from "./NotFound";
-import { ToastContainer, toast } from "react-toastify";
+import { fetchPopularCategory, fetchProducts } from "../services/fetchData";
+import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 const POPULAR_URL = "http://localhost:8080/api/popular";
+const PRODUCT_URL = "http://localhost:8080/api/products";
 function Home({ wishlist, setWishlist, basket, setBasket }) {
   //   const [wishlist, setWishlist] = useState([]);
   //   const [basket, setBasket] = useState([]);
   const [show, setShow] = useState(false);
   const [popularCategory, setPopularCategory] = useState([]);
+  const [productsData, setProducts] = useState([]);
 
   useEffect(() => {
     fetchPopularCategory(POPULAR_URL, setPopularCategory);
+    fetchProducts(PRODUCT_URL, setProducts);
   }, []);
 
   const images = carouselData.map((data) => {

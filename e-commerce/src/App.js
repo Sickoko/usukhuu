@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
-
-import { Link, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
 import CallService from "./components/CallService";
@@ -43,15 +42,19 @@ function App() {
           <Route path="/signup" element={<Signup />}></Route>
           <Route
             path="/productDetails/:id"
-            element={<ProductDetails
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-              basket={basket}
-              setBasket={setBasket} />}
+            element={
+              <ProductDetails
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+                basket={basket}
+                setBasket={setBasket}
+              />
+            }
           ></Route>
-          <Route path="/cart" element={<Cart
-            basket={basket}
-            setBasket={setBasket} />}></Route>
+          <Route
+            path="/cart"
+            element={<Cart basket={basket} setBasket={setBasket} />}
+          ></Route>
         </Routes>
       </div>
     </div>
